@@ -6,14 +6,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {useAuth} from '../../context/auth-context';
 
 const LoginScreen = ({navigation}: any) => {
+  const {signIn} = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     console.log('Login pressed');
     // Your login logic here
+    await signIn();
   };
 
   return (

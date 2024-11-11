@@ -1,5 +1,7 @@
 // import {authService} from '../services/auth-service';
 
+import {authService} from '../service/auth-service';
+
 // Simulate API responses
 let validToken = false;
 let apiCallCount = 0;
@@ -33,8 +35,9 @@ export const demoApi = {
         return {data: 'Protected data retrieved after refresh!'};
       } catch (error) {
         console.log('❌ Refresh failed, logging out...');
+
+        authService.signOut();
         // await authService.signOut();
-        console.log('SIGN OUT DONE');
         throw new Error('Auth failed');
       }
     }
