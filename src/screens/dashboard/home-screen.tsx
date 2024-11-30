@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {requestUserPermission} from '../../utils/NotificationService';
 
 const HomeScreen = ({navigation}: any) => {
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home Screen</Text>

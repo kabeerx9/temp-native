@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286754032553",
+    "project_id": "react-native-cb89e",
+    "storage_bucket": "react-native-cb89e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286754032553:android:0866fa91371f1463c792b8",
+        "android_client_info": {
+          "package_name": "com.react_native"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtyiKBmiyzIk7nleDI-t_nGDzinI0dx3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
