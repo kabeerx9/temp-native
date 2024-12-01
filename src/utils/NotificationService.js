@@ -30,3 +30,14 @@ export async function getFcmToken() {
   console.log('FCM Token:', fcmToken);
   return fcmToken;
 }
+
+import notifee from '@notifee/react-native';
+
+export async function requestNotificationPermission() {
+  const settings = await notifee.requestPermission();
+  if (settings.authorizationStatus === 1) {
+    console.log('Notification permissions granted.');
+  } else {
+    console.error('Notification permissions not granted.');
+  }
+}
