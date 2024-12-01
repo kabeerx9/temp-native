@@ -11,8 +11,10 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({children}: {children: React.ReactNode}) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(true);
 
   const checkAuthStatus = async () => {
     try {
@@ -32,7 +34,7 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
       await signOut();
     });
 
-    checkAuthStatus();
+    // checkAuthStatus();
   }, []);
 
   const signIn = async () => {

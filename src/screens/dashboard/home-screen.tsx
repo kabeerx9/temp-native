@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {requestUserPermission} from '../../utils/NotificationService';
+import React from 'react';
+import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const HomeScreen = ({navigation}: any) => {
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home Screen</Text>
@@ -21,7 +19,7 @@ const HomeScreen = ({navigation}: any) => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Detail')}>
+        onPress={() => Linking.openURL('myapp://details')}>
         <Text style={styles.buttonText}>Go to Detail Page</Text>
       </TouchableOpacity>
     </View>
