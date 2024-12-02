@@ -20,24 +20,27 @@ const linking = {
       Login: 'login',
     },
   },
+  async getInitialURL() {
+    console.log('Inside getInitialURL');
+    // Handle deep link from notifee notification
+    const initialNotification = await notifee.getInitialNotification();
+    if (initialNotification) {
+      const deepLink = initialNotification.notification.data.screen;
+      console.log('Deep Link:', deepLink);
+      console.log('returning deepLink');
+      return deepLink;
+    }
+    // Fallback to the default initial URL
+    console.log('fallback to default initial URL');
+    const url = await Linking.getInitialURL();
+    return url;
+  },
 };
 
 function App(): React.JSX.Element {
   useEffect(() => {
     requestUserPermission();
     requestNotificationPermission();
-  }, []);
-
-  useEffect(() => {
-    const bootstrap = async () => {
-      const intialNotification = await notifee.getInitialNotification();
-      console.log('Initial Notification:', intialNotification);
-      const deepLink = intialNotification?.notification.data.screen;
-      console.log('Deep Link:', deepLink);
-      Linking.openURL(deepLink);
-    };
-
-    bootstrap();
   }, []);
 
   return (
