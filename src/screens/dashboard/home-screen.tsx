@@ -1,7 +1,7 @@
 import React from 'react';
 import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const HomeScreen = ({navigation}: any) => {
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home Screen</Text>
@@ -21,6 +21,11 @@ const HomeScreen = ({navigation}: any) => {
         style={styles.button}
         onPress={() => Linking.openURL('myapp://details')}>
         <Text style={styles.buttonText}>Go to Detail Page</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => console.log('Clear log!!!!')}>
+        <Text style={styles.buttonText}>Clear logs</Text>
       </TouchableOpacity>
     </View>
   );

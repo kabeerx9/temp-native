@@ -3,7 +3,7 @@ import messaging from '@react-native-firebase/messaging';
 import {useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
-import {Button, SafeAreaView, Text} from 'react-native';
+import {Button, Linking, SafeAreaView, Text} from 'react-native';
 import {useAuth} from './src/context/auth-context';
 import LoginScreen from './src/screens/auth/login-screen';
 import DetailsScreen from './src/screens/dashboard/detail-screen';
@@ -47,6 +47,7 @@ export const AppNavigator = () => {
         importance: AndroidImportance.HIGH,
       });
 
+      console.log('Calling display notification');
       await notifee.displayNotification({
         title: 'notifee ' + remoteMessage.data?.title,
         body: 'notifee ' + remoteMessage.data?.body,
@@ -70,15 +71,17 @@ export const AppNavigator = () => {
     const unsubscribe = notifee.onForegroundEvent(({type, detail}) => {
       switch (type) {
         case EventType.PRESS:
-          const screenName = detail?.notification?.data?.screen;
+          console.log('Foreground press notification', detail.notification);
+
+          const linkingUrl = detail?.notification?.data.screen;
 
           if (!isSignedIn) {
-            navigation.navigate('SignUp');
+            Linking.openURL('myapp://login');
             return;
           }
 
-          if (isSignedIn && screenName === 'Detail') {
-            navigation.navigate('Detail');
+          if (isSignedIn && linkingUrl) {
+            Linking.openURL(linkingUrl);
           }
           break;
         case EventType.DISMISSED:
@@ -112,15 +115,15 @@ export const AppNavigator = () => {
         </>
       ) : (
         <>
-          <Stack.Screen 
-            name="Home" 
+          <Stack.Screen
+            name="Home"
             component={HomeScreen}
             options={{
               headerShown: true,
             }}
           />
-          <Stack.Screen 
-            name="Detail" 
+          <Stack.Screen
+            name="Detail"
             component={DetailsScreen}
             options={{
               headerShown: true,

@@ -6,7 +6,9 @@ import {
   requestUserPermission,
 } from './src/utils/NotificationService';
 
+import notifee from '@notifee/react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import {Linking} from 'react-native';
 
 const linking = {
   prefixes: ['myapp://'],
@@ -24,6 +26,18 @@ function App(): React.JSX.Element {
   useEffect(() => {
     requestUserPermission();
     requestNotificationPermission();
+  }, []);
+
+  useEffect(() => {
+    const bootstrap = async () => {
+      const intialNotification = await notifee.getInitialNotification();
+      console.log('Initial Notification:', intialNotification);
+      const deepLink = intialNotification?.notification.data.screen;
+      console.log('Deep Link:', deepLink);
+      Linking.openURL(deepLink);
+    };
+
+    bootstrap();
   }, []);
 
   return (

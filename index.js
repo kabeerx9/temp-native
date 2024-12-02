@@ -24,6 +24,7 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
       });
     }
 
+    console.log('calling display notification in index.js');
     await notifee.displayNotification({
       title: 'notifee background : ' + remoteMessage.data.title,
       body: 'notifee' + remoteMessage.data.body,
@@ -44,8 +45,9 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 });
 
 notifee.onBackgroundEvent(async ({type, detail}) => {
-  console.log('Background event:', type, detail);
+  console.log('Background event received:', type, detail);
   if (type === EventType.PRESS) {
+    console.log('Background event was pressed');
     const linkingScreen = detail.notification?.data?.screen;
     if (linkingScreen) {
       // Use a small delay to ensure app is ready
